@@ -3,23 +3,8 @@ interface Category { // Garantindo a tipagem dos dados
   name: string;
 }
 
-export async function getCategories(): Promise<Category[]> {
-  const endpoint = 'https://api.mercadolibre.com/sites/MLB/categories'; // endpoint da API
-  const response = await fetch(endpoint);
-  const categories: Category[] = await response.json();
-  return categories;
-}
+export const getCategories = async (): Promise<Category[]> => (await fetch('https://api.mercadolibre.com/sites/MLB/categories')).json();
 
-export async function getProductsFromCategoryAndQuery(categoryId: string, query: string) {
-  const endpoint = `https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`; // endpoint da API
-  const response = await fetch(endpoint);
-  const products = await response.json();
-  return products;
-}
+export const getProductsFromCategoryAndQuery = async (categoryId: string, query: string) => (await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`)).json();
 
-export async function getProductById(productId: string) {
-  const endpoint = `https://api.mercadolibre.com/items/${productId}`; // endpoint da API
-  const response = await fetch(endpoint);
-  const product = await response.json();
-  return product;
-}
+export const getProductById = async (productId: string) => (await fetch(`https://api.mercadolibre.com/items/${productId}`)).json();
