@@ -1,4 +1,4 @@
-interface Category { // interface para tipar o retorno da função getCategories
+interface Category { // Garantindo a tipagem dos dados
   id: string;
   name: string;
 }
