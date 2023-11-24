@@ -1,12 +1,10 @@
-export async function getCategories() {
-  // Implemente aqui
+interface Category { // Garantindo a tipagem dos dados
+  id: string;
+  name: string;
 }
 
-export async function getProductsFromCategoryAndQuery(/* categoryId, query */) {
-  // Implemente aqui! Quando o fizer, descomente os parâmetros que essa função recebe
-}
+export const getCategories = async (): Promise<Category[]> => (await fetch('https://api.mercadolibre.com/sites/MLB/categories')).json();
 
-export async function getProductById() {
-  // Esta implementação específica não é avaliada, mas pode ajudar você 🙂
-  // Atenção: essa função não deverá ser chamada na tela do carrinho de compras.
-}
+export const getProductsFromCategoryAndQuery = async (categoryId: string, query: string) => (await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`)).json();
+
+export const getProductById = async (productId: string) => (await fetch(`https://api.mercadolibre.com/items/${productId}`)).json();
