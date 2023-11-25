@@ -4,7 +4,6 @@ import ListCategory from '../../components/ListCategory';
 import { ItemType } from '../../components/types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 
-
 function Home() {
   const [result, setResult] = useState(false);
   const [resultadoAPI, setResultadoAPI] = useState<ItemType[]>([]);
