@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ListCategory from '../../components/ListCategory';
 import { ItemType } from '../../components/types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 
@@ -36,6 +37,7 @@ function Home() {
       <Link to="/ShoppingCart" data-testid="shopping-cart-button">
         <button>Ir para o Carrinho</button>
       </Link>
+      <ListCategory />
       {result === true && <h2>Nenhum produto foi encontrado</h2>}
 
       {resultadoAPI.length > 0
