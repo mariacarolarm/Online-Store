@@ -7,13 +7,13 @@ import { getProductsFromCategoryAndQuery } from '../../services/api';
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [result, setResult] = useState(false);
-  const [resultadoAPI, setResultadoAPI] = useState<ItemType[]>([]);
+  const [resultAPI, setResultAPI] = useState<ItemType[]>([]);
   const [search, setSearch] = useState<string>('');
 
   const handleCategorySelect = async (categoryId: string) => {
     setSelectedCategory(categoryId);
     const API_SEARCH = await getProductsFromCategoryAndQuery(categoryId, search);
-    setResultadoAPI(API_SEARCH.results);
+    setResultAPI(API_SEARCH.results);
   };
 
   const handleSearch = async (event: React.FormEvent) => {
@@ -23,7 +23,7 @@ function Home() {
     if (!response || response.length === 0) {
       setResult(true);
     }
-    setResultadoAPI(response);
+    setResultAPI(response);
   };
   return (
     <>
@@ -55,8 +55,8 @@ function Home() {
       <ListCategory onCategorySelect={ handleCategorySelect } />
       {result === true && <h2>Nenhum produto foi encontrado</h2>}
 
-      {resultadoAPI.length > 0
-        && resultadoAPI.map((obj) => (
+      {resultAPI.length > 0
+        && resultAPI.map((obj) => (
           <div key={ obj.id } data-testid="product">
             <p>
               Produto:
