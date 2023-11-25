@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ListCategory from '../../components/ListCategory';
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       <Link to="/ShoppingCart" data-testid="shopping-cart-button">
         <button>Ir para o Carrinho</button>
       </Link>
+      <ListCategory />
     </>
   );
 }
