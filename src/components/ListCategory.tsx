@@ -6,7 +6,11 @@ type ListCategoryType = {
   name: string,
 };
 
-function ListCategory() {
+type ListCategoryProps = {
+  onCategorySelect: (categoryId: string) => void; // Adicionando prop para a função de seleção de categoria
+};
+
+function ListCategory({ onCategorySelect }: ListCategoryProps) {
   const [categories, setCategories] = useState<ListCategoryType[]>([]);
 
   useEffect(() => {
@@ -28,6 +32,7 @@ function ListCategory() {
                 id={ category.id }
                 name="categoryButton"
                 value={ category.name }
+                onChange={ () => onCategorySelect(category.id) }
               />
               { category.name }
             </label>

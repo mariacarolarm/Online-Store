@@ -5,9 +5,17 @@ import { ItemType } from '../../components/types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
 
 function Home() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [result, setResult] = useState(false);
   const [resultadoAPI, setResultadoAPI] = useState<ItemType[]>([]);
   const [search, setSearch] = useState<string>('');
+
+  const handleCategorySelect = async (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    const API_SEARCH = await getProductsFromCategoryAndQuery(categoryId, search);
+    setResultadoAPI(API_SEARCH.results);
+  };
+
   const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
     const API_SEARCH = await getProductsFromCategoryAndQuery('', search);
@@ -37,7 +45,14 @@ function Home() {
       <Link to="/ShoppingCart" data-testid="shopping-cart-button">
         <button>Ir para o Carrinho</button>
       </Link>
-      <ListCategory />
+      {selectedCategory && (
+        <p data-testid="selected-category">
+          Categoria selecionada:
+          {' '}
+          {selectedCategory}
+        </p>
+      )}
+      <ListCategory onCategorySelect={ handleCategorySelect } />
       {result === true && <h2>Nenhum produto foi encontrado</h2>}
 
       {resultadoAPI.length > 0
