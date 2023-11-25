@@ -6,10 +6,10 @@ import { getProductsFromCategoryAndQuery } from '../../services/api';
 function Home() {
   const [result, setResult] = useState(false);
   const [resultadoAPI, setResultadoAPI] = useState<ItemType[]>([]);
-  const [busca, setBusca] = useState<string>('');// depois conferir se deve trocar para search,setSearch
-  const handleBusca = async (event: React.FormEvent) => {
+  const [search, setSearch] = useState<string>('');
+  const handleSearch = async (event: React.FormEvent) => {
     event.preventDefault();
-    const API_SEARCH = await getProductsFromCategoryAndQuery('', busca);
+    const API_SEARCH = await getProductsFromCategoryAndQuery('', search);
     const response = API_SEARCH.results;
     if (!response || response.length === 0) {
       setResult(true);
@@ -22,12 +22,12 @@ function Home() {
         type="text"
         name=""
         id="input-search"
-        value={ busca }
-        onChange={ ({ target }) => setBusca(target.value) }
+        value={ search }
+        onChange={ ({ target }) => setSearch(target.value) }
         data-testid="query-input"
       />
       {' '}
-      <button data-testid="query-button" onClick={ handleBusca }>Buscar</button>
+      <button data-testid="query-button" onClick={ handleSearch }>Buscar</button>
       <p
         data-testid="home-initial-message"
       >
