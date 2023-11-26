@@ -5,8 +5,6 @@ type ProductCartProp = {
 };
 
 function ClientCart({ product }: ProductCartProp) {
-  console.log(product);
-
   return (
     <div>
       <p data-testid="shopping-cart-product-name">

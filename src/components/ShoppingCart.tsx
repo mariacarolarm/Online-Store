@@ -4,8 +4,6 @@ import { ProductCartType } from './types';
 function ShoppingCart() {
   const getLocalStorage = JSON.parse(localStorage.getItem('carrinho') || '[]');
 
-  console.log(getLocalStorage);
-
   return (
     <div>
       {
