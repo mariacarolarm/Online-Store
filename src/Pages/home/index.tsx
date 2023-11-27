@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ListCategory from '../../components/ListCategory';
 import { ItemType } from '../../components/types';
 import { getProductsFromCategoryAndQuery } from '../../services/api';
+import { addToCart } from '../../services/addToCart';
 
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -77,6 +78,12 @@ function Home() {
                 {obj.price}
               </p>
               <img src={ obj.thumbnail } alt="" />
+              <button
+              data-testid="product-add-to-cart"
+              onClick={ () => addToCart(obj) }
+            >
+              Adicionar ao Carrinho
+            </button>
             </div>
           </Link>
         ))}
