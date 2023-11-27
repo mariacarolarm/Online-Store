@@ -59,34 +59,29 @@ function Home() {
       <ListCategory onCategorySelect={ handleCategorySelect } />
       {result === true && <h2>Nenhum produto foi encontrado</h2>}
 
-      {resultAPI.length > 0
-        && resultAPI.map((obj) => (
-          <Link
-            to={ `/product/${obj.id}` }
-            key={ obj.id }
-            data-testid="product-detail-link"
-          >
-            <div data-testid="product">
-              <p>
-                Produto:
-                {' '}
-                { obj.title }
-              </p>
-              <p>
-                Preço:
-                {' '}
-                {obj.price}
-              </p>
-              <img src={ obj.thumbnail } alt="" />
-              <button
-              data-testid="product-add-to-cart"
-              onClick={ () => addToCart(obj) }
-            >
-              Adicionar ao Carrinho
-            </button>
-            </div>
+      {resultAPI.length > 0 && resultAPI.map((obj) => (
+        <div key={ obj.id } data-testid="product">
+          <Link to={ `/product/${obj.id}` } data-testid="product-detail-link">
+            <p>
+              Produto:
+              {' '}
+              {obj.title}
+            </p>
+            <p>
+              Preço:
+              {' '}
+              {obj.price}
+            </p>
+            <img src={ obj.thumbnail } alt="" />
           </Link>
-        ))}
+          <button
+            data-testid="product-add-to-cart"
+            onClick={ () => addToCart(obj) }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      ))}
     </>
   );
 }

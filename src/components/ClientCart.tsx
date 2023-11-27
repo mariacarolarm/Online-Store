@@ -12,15 +12,16 @@ function ClientCart({ product }: ProductCartProp) {
         {' '}
         {product.title}
       </p>
-      <img
-        src={ product.thumbnail }
-        alt="Imagem do Produto"
-      />
+      {product.thumbnail && (
+        <img
+          src={ product.thumbnail }
+          alt={ product.thumbnail }
+        />
+      )}
       <p data-testid="shopping-cart-product-quantity">
         Quantidade:
         {' '}
         {product.quantity}
-        {' '}
       </p>
     </div>
   );
