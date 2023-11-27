@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getProductById } from '../../services/api';
+import { addToCart } from '../../services/addToCart';
 
 function ProductDetails() {
   const { id } = useParams<{ id: string }>();
@@ -40,6 +41,12 @@ function ProductDetails() {
         {' '}
         {product.price}
       </p>
+      <button
+        data-testid="product-detail-add-to-cart"
+        onClick={ () => addToCart(product) }
+      >
+        Adicionar ao Carrinho
+      </button>
       <Link to="/ShoppingCart">
         <button data-testid="shopping-cart-button">Ir para o Carrinho</button>
       </Link>
