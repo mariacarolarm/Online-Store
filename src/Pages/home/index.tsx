@@ -43,7 +43,10 @@ function Home() {
       >
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>
-      <Link to="/ShoppingCart" data-testid="shopping-cart-button">
+      <Link
+        to="/ShoppingCart"
+        data-testid="shopping-cart-button"
+      >
         <button>Ir para o Carrinho</button>
       </Link>
       {selectedCategory && (
@@ -56,13 +59,13 @@ function Home() {
       <ListCategory onCategorySelect={ handleCategorySelect } />
       {result === true && <h2>Nenhum produto foi encontrado</h2>}
 
-      {resultAPI.length > 0
-        && resultAPI.map((obj) => (
-          <div key={ obj.id } data-testid="product">
+      {resultAPI.length > 0 && resultAPI.map((obj) => (
+        <div key={ obj.id } data-testid="product">
+          <Link to={ `/product/${obj.id}` } data-testid="product-detail-link">
             <p>
               Produto:
               {' '}
-              { obj.title }
+              {obj.title}
             </p>
             <p>
               Preço:
@@ -70,14 +73,15 @@ function Home() {
               {obj.price}
             </p>
             <img src={ obj.thumbnail } alt="" />
-            <button
-              data-testid="product-add-to-cart"
-              onClick={ () => addToCart(obj) }
-            >
-              Adicionar ao Carrinho
-            </button>
-          </div>
-        ))}
+          </Link>
+          <button
+            data-testid="product-add-to-cart"
+            onClick={ () => addToCart(obj) }
+          >
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      ))}
     </>
   );
 }
