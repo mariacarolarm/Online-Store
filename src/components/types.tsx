@@ -4,3 +4,7 @@ export type ItemType = {
   thumbnail: string;
   price: number;
 };
+
+export type ProductCartType = ItemType & {
+  quantity: number;
+};
