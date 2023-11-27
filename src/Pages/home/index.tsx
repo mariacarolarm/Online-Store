@@ -42,7 +42,10 @@ function Home() {
       >
         Digite algum termo de pesquisa ou escolha uma categoria.
       </p>
-      <Link to="/ShoppingCart" data-testid="shopping-cart-button">
+      <Link
+        to="/ShoppingCart"
+        data-testid="shopping-cart-button"
+      >
         <button>Ir para o Carrinho</button>
       </Link>
       {selectedCategory && (
@@ -57,19 +60,25 @@ function Home() {
 
       {resultAPI.length > 0
         && resultAPI.map((obj) => (
-          <div key={ obj.id } data-testid="product">
-            <p>
-              Produto:
-              {' '}
-              { obj.title }
-            </p>
-            <p>
-              Preço:
-              {' '}
-              {obj.price}
-            </p>
-            <img src={ obj.thumbnail } alt="" />
-          </div>
+          <Link
+            to={ `/product/${obj.id}` }
+            key={ obj.id }
+            data-testid="product-detail-link"
+          >
+            <div data-testid="product">
+              <p>
+                Produto:
+                {' '}
+                { obj.title }
+              </p>
+              <p>
+                Preço:
+                {' '}
+                {obj.price}
+              </p>
+              <img src={ obj.thumbnail } alt="" />
+            </div>
+          </Link>
         ))}
     </>
   );
